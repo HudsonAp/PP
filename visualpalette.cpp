@@ -288,7 +288,7 @@ bool VisualPalette::eventFilter(QObject *watched, QEvent *event)
 
 		swatch = (QLabel *)(cell->widget());
 
-		QColor color = swatch->pixmap()->toImage().pixelColor(50, 50);
+		QColor color = swatch->pixmap()->toImage().pixel(50, 50);
 		emit hoverColor(color);
 	}
 

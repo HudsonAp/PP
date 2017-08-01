@@ -92,11 +92,11 @@ void LightingSliderStyle::setColor(QColor ambientColor)
 	{
 		for (int y = 0; y < alphaMask.height(); y++)
 		{
-			alpha = alphaMask.pixelColor(x, y).alphaF();
+			alpha = QColor(alphaMask.pixel(x, y)).alphaF();
 
 			if (this->_blendWhite)
 			{
-				QColor backgroundColor = bg.pixelColor(x, y);
+				QColor backgroundColor = bg.pixel(x, y);
 
 				// alpha blending equation
 				// out = alpha * new + (1 - alpha) * old
@@ -106,11 +106,11 @@ void LightingSliderStyle::setColor(QColor ambientColor)
 				gn = alpha + (1.0f - alpha) * g;
 				bn = alpha + (1.0f - alpha) * b;
 
-				alphaMask.setPixelColor(x, y, QColor::fromRgbF(rn, gn, bn, backgroundColor.alphaF()));
+				alphaMask.setColor(alphaMask.pixelIndex(x, y), qRgba(rn * 255, gn * 255, bn * 255, backgroundColor.alphaF() * 255));
 			}
 			else
 			{
-				alphaMask.setPixelColor(x, y, QColor::fromRgbF(r, g, b, alpha));
+				alphaMask.setColor(alphaMask.pixelIndex(x, y), qRgba(r * 255, g * 255, b * 255, alpha * 255));
 			}
 		}
 	}

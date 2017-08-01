@@ -210,7 +210,7 @@ bool sort_angles1(ColorPoint *i, ColorPoint *j)
 
 QColor CirclePalette::getColorAt(const QPoint &p)
 {
-	QColor color = colorWheel->pixmap()->toImage().pixelColor(p.x(), p.y());
+	QColor color = colorWheel->pixmap()->toImage().pixel(p.x(), p.y());
 	/*ColorPoint cp;
 	cp.color = color;
 	cp.point = p;
@@ -268,7 +268,7 @@ bool CirclePalette::eventFilter(QObject *watched, QEvent *event)
 
 		if (_is_collision(wheelCenter, radius, p))
 		{
-			QColor color = colorWheel->pixmap()->toImage().pixelColor(p.x(), p.y());
+			QColor color = colorWheel->pixmap()->toImage().pixel(p.x(), p.y());
 
 			emit hoverColor(color);
 		}
@@ -290,7 +290,7 @@ bool CirclePalette::eventFilter(QObject *watched, QEvent *event)
 						  lighting->y() - (lightingPic.height() / 2) + LIGHTING_ICON_MIDDLE_TO_TOP),
 					   lightingPic);
 
-			QColor lightingColor = colorWheel->pixmap()->toImage().pixelColor(lighting->x(), lighting->y());
+			QColor lightingColor = colorWheel->pixmap()->toImage().pixel(lighting->x(), lighting->y());
 
 			if (this->lightingColor != lightingColor)
 			{
